@@ -2,8 +2,13 @@ import Footer from '../../components/patterns/Footer'
 import Link from '../../components/Link'
 import { theme } from '../../theme/theme'
 import { Box, Text } from '../../theme/components'
+import FaqModel from '../../models/faq'
 
-export default function FAQScreen({ faq }) {
+interface FAQProps {
+  faqs: FaqModel[]
+}
+
+export default function FAQScreen({ faqs }: FAQProps) {
   return (
     <Box
       styleSheet={{
@@ -80,7 +85,7 @@ export default function FAQScreen({ faq }) {
               }}
             >
               <Link
-                href="/"
+                href="/home"
                 styleSheet={{
                   color: theme.colors.primary[400],
                   fontWeight: '500',
@@ -104,7 +109,7 @@ export default function FAQScreen({ faq }) {
               }
             }}
           >
-            {faq.length === 0 && (
+            {faqs.length === 0 && (
               <Box
                 styleSheet={{
                   display: 'flex',
@@ -149,7 +154,7 @@ export default function FAQScreen({ faq }) {
               </Box>
             )}
             <Box as="dl">
-              {faq.map(faq => (
+              {faqs.map(faq => (
                 <Box
                   key={faq.question}
                   styleSheet={{
